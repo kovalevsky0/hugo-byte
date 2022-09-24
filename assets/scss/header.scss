@@ -1,0 +1,25 @@
+.header {
+  width: 100%;
+  // background-color: $header-bg-color-dark;
+}
+
+.header__inner {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+
+.header__row {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 690px) {
+  .header__inner {
+    height: auto;
+    flex-direction: column;
+    padding: 10px 0 15px 0;
+  }
+}

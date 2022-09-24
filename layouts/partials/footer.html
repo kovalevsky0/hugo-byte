@@ -1,0 +1,43 @@
+{{ if not .Site.Params.hideFooter | default false }}
+  <footer class="footer">
+    <section class="container">
+      <div class="footer__inner">
+        <div>
+          {{ if not .Site.Params.hideCopyright }}
+            ©
+            {{ with .Site.Params.author }} {{ . }} {{ end }}
+            {{ now.Year }}
+          {{ end }}
+        </div>
+        {{ if .Site.Params.isIndieWebRingShown }}
+          <div>
+            <a href="https://xn--sr8hvo.ws/%F0%9F%9A%A7%F0%9F%8D%9D%F0%9F%92%90/previous">←</a>
+            An IndieWeb Webring 🕸💍
+            <a href="https://xn--sr8hvo.ws/%F0%9F%9A%A7%F0%9F%8D%9D%F0%9F%92%90/next">→</a>
+          </div>
+        {{ end }}
+        {{ if .Site.Menus.footer }}
+        <div>
+          <nav class="navbar">
+            {{ with .Site.Menus.footer}}
+              {{ range sort . }}
+                <a class="navbar__link" href="{{ .URL | relLangURL }}">{{ .Name }}</a>
+              {{ end }}
+            {{ end }}
+          </nav>
+        </div>
+        {{ end }}
+        <div>
+          {{ if not .Site.Params.hideCredits }}
+            {{ i18n "powered_by" }} <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/byteski/hugo-byte">Byte theme</a>
+          {{ end }}
+          {{ if .Site.Params.commit }}
+            {{ if .GitInfo }}
+              [<a href="{{ .Site.Params.commit }}/{{ .GitInfo.Hash }}">{{ .GitInfo.AbbreviatedHash }}</a>]
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </section>
+  </footer>
+{{ end }}

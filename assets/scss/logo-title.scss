@@ -1,0 +1,41 @@
+.logo-title {
+  font-size: 20px;
+  font-family: "Roboto Mono", monospace;
+  font-weight: bold;
+  color: $main-text-color-dark;
+
+  &:hover,
+  &:active {
+    background: #f4f4f4;
+    color: #111827;
+  }
+
+  &::after {
+    content: "";
+    // -webkit-animation: cursor .8s infinite;
+    // animation: cursor .8s infinite;
+    // background: $main-text-color-dark;
+    background: #62c4ff;
+    border-radius: 0;
+    display: inline-block;
+    height: 0.9em;
+    margin-left: 0.6em;
+    width: 10px;
+    bottom: -2px;
+    position: relative;
+
+    -webkit-animation: cursor 1s infinite;
+    animation: cursor 1s infinite;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 690px) {
+  .logo-title {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+  }
+}

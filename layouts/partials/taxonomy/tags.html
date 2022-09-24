@@ -1,0 +1,10 @@
+<div class="post-tags">
+  {{- range $index, $el := . -}}
+    <div class="post-tags__tag">
+      <a class="post-tag p-category" href="{{ ( printf "tags/%s/" ( . | urlize ) ) | relLangURL }}">
+        <i aria-hidden="true" class="fa fa-tag"></i>
+        #{{ . }}
+      </a>
+    </div>
+  {{- end -}}
+</div>

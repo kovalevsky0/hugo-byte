@@ -1,0 +1,18 @@
+.page-grid {
+  max-width: 930px;
+  width: 100%;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: flex-start;
+
+  &_reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+@media (max-width: 1100px) {
+  .page-grid {
+    flex-direction: column-reverse;
+  }
+}

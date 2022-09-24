@@ -1,0 +1,125 @@
+.subscription-top {
+  .subscription {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.subscription {
+  background: #090e1a;
+  padding: 25px 25px 35px 25px;
+  margin-bottom: 3rem;
+  // border-radius: 4px;
+  border: 1px solid #1f2938;
+  max-width: 800px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  a:not(.subscription__btn) {
+    color: #f4f4f4;
+    border-bottom: 3px solid #fa9312;
+    box-shadow: inset 0 -7px 0 rgba(178, 192, 232, 0.25);
+
+    &:hover,
+    &:active {
+      background: #fa9312;
+      color: #090e1a;
+      box-shadow: none;
+    }
+  }
+
+  h3 {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+
+    i {
+      // color: #fa9312;
+      // color: #5c55c9;
+      // color: #b555c9;
+      background: -webkit-linear-gradient(#5c55c9, #b555c9);
+      background-clip: border-box;
+      background-clip: border-box;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  form {
+    display: flex;
+    align-items: center;
+
+    input[type="email"] {
+      padding: 14px 20px;
+      background: #1f2938;
+      border: none;
+      outline: none;
+      color: #f4f4f4;
+      // border-radius: 4px 0 0 4px;
+      height: 46px;
+      // max-width: 270px;
+      // width: 100%;
+      width: 300px;
+    }
+  }
+
+  &__btn {
+    height: 46px;
+    // border-radius: 0 4px 4px 0;
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    background: linear-gradient(-90deg, #1a3162, #453762);
+    color: #f4f4f4;
+    box-shadow: none !important;
+    border: none !important;
+
+    &:hover,
+    &:active {
+      background: #f4f4f4 !important;
+      color: #090e1a !important;
+    }
+
+    &_no-form {
+      // border-radius: 2px;
+    }
+  }
+
+  &__form-wrapper {
+    display: flex;
+    align-content: center;
+    margin-bottom: 1rem;
+
+    h4 {
+      line-height: 2.6rem;
+      margin-left: 1rem;
+      margin-bottom: 0;
+    }
+  }
+
+  &__agreement {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 800px) {
+  .subscription {
+    form {
+      flex-direction: column;
+      align-items: start;
+      justify-content: start;
+
+      input[type="email"] {
+        max-width: 100%;
+        width: 100%;
+        // border-radius: 4px 4px 0 0;
+      }
+    }
+
+    &__btn {
+      width: 100%;
+      // border-radius: 0 0 4px 4px;
+    }
+  }
+}

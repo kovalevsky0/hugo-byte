@@ -1,0 +1,11 @@
+<div>
+  {{ .Content }} 
+  <div class="posts-list">
+    {{ $paginate := .Paginate (where (where .Site.Pages "Type" "blog") ".Params.public" "==" true) }}
+    {{ range $paginate.Pages.ByDate.Reverse }}
+      {{ .Scratch.Set "is_label_visible" false }}
+      {{ partial "li.html" . }}
+    {{ end }}
+  </div>
+  {{ partial "pagination.html" . }}
+</div>

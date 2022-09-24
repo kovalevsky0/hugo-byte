@@ -1,0 +1,11 @@
+.posts-list {
+  display: flex;
+  flex-wrap: wrap;
+  // margin: 0 -15px;
+  margin-bottom: 3rem;
+  margin-left: 115px;
+
+  @media (max-width: 800px) {
+    margin-left: 0px;
+  }
+}

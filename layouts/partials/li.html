@@ -1,0 +1,73 @@
+<!-- it's used on the home page and blog -->
+<article class="post h-entry">
+  <div class="post__line">
+    <div class="post__line-point">
+      {{ if eq .Page.Params.Type "blog" }}
+        <a href="/blog" class="post__type post__type_blog">
+          <i aria-hidden="true" class="fa fa-book"></i>
+        </a>
+      {{ end }}
+      {{ if (not (isset .Page.Params "type")) | or (eq .Page.Params.type "") | or (eq .Page.Params.type "note") }}
+        <a href="/notes" class="post__type post__type_note">
+          <i aria-hidden="true" class="fa fa-archive"></i>
+        </a>
+      {{ end }}
+    </div>
+    {{ if index $.Site.Data.plausibleViewsCount .RelPermalink }}
+      <div class="post__line-views-point">
+        <i aria-hidden="true" class="fa fa-eye"></i>
+      </div>
+    {{ end }}
+    <div class="post__line-content">
+      <div>
+        <time class="dt-published" dateTime={{ .Date.Format (.Site.Params.dateFormat | default "02/01/2006" ) }}>
+          {{ .Date.Format (.Site.Params.dateFormat | default "02/01/2006" ) }}
+        </time>
+        <!-- <i aria-hidden="true" class="fa fa-calendar"></i> -->
+      </div>
+      <div class="post__line-views">
+        {{ if index $.Site.Data.plausibleViewsCount .RelPermalink }}
+          {{ index $.Site.Data.plausibleViewsCount .RelPermalink }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+  <div class="post__inner">
+    {{ if .Page.Params.Image }}
+      <a class="post__image" href="{{ .Params.externalLink | default .RelPermalink }}">
+        <img src="/{{ .Page.Params.Image }}" alt="{{ .Title }}" />
+      </a>
+    {{ end }}
+    {{ $postContentClass := "" }}
+    {{ if .Page.Params.Image }}
+      {{ $postContentClass = "post__content_image" }}
+    {{ end }}
+    <div class="post__content {{ $postContentClass }}">
+      <header>
+        <a class="u-url" href="{{ .Params.externalLink | default .RelPermalink }}">
+          <h4 class="p-name">{{ .Title }}</h4>
+        </a>
+      </header>
+      <section>
+        <p class="p-summary">
+          {{ if .Page.Params.Excerpt }}
+            {{ .Page.Params.Excerpt }}
+          {{ else }}
+            {{ .Summary | safeHTML | truncate .Site.Params.SummaryLength }}
+          {{ end }}
+          <a class="post__read-more" href="{{ .Params.externalLink | default .RelPermalink }}">Read more</a>
+        </p>
+        {{ with .Page.Params.Tags }}
+          {{ partial "taxonomy/tags.html" . }}
+        {{ end }}
+      </section>
+    </div>
+  </div>
+  <!-- <div class="post__info">
+    <i aria-hidden="true" class="fa fa-calendar"></i>
+    <time class="dt-published" dateTime={{ .Date.Format (.Site.Params.dateFormat | default "02/01/2006" ) }}>
+      {{ .Date.Format (.Site.Params.dateFormat | default "02/01/2006" ) }}
+    </time>
+  </div> -->
+</article>
+

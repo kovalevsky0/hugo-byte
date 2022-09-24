@@ -1,0 +1,18 @@
+.info-card {
+  width: 100%;
+  padding: 25px 30px 25px;
+  margin: 0 auto 24px;
+  font-family: 'Roboto Mono', monospace;
+  border-radius: 3px;
+
+  background-color: #37383a;
+  color: $second-text-color-dark;
+
+  &_colorful {
+    border: 2px dashed;
+    border-color: #759cc0;
+    background: #212123;
+  }
+}
+
+

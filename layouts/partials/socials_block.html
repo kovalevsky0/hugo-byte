@@ -1,0 +1,16 @@
+<div class="info-card">
+  <nav class="socials-list">
+    <ul>
+      {{ range .Site.Params.Social }}
+        <li>
+          <a href="{{ .url }}" target="_blank">
+            <i aria-hidden="true" class="{{ .icon }}"></i>
+          </a>
+          <a href="{{ .url }}" target="_blank">
+            {{ .name }}
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+  </nav>
+</div>

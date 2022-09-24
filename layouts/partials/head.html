@@ -1,0 +1,102 @@
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Language" content="{{ .Site.Language.Lang }}">
+  <meta name="color-scheme" content="light dark">
+
+  {{ if .Site.Params.csp }}
+    {{ partial "csp.html" . }}
+  {{ end }}
+
+  {{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+  <meta name="description" content="{{ .Description | default (.Summary | default .Site.Params.description ) }}">
+  <meta name="keywords" content="{{ (delimit .Keywords ",") | default .Site.Params.keywords }}">
+
+
+  {{ if .Page.Params.Image }}
+    <meta name="image" content="{{ .Site.BaseURL }}{{ .Params.Image }}" />
+  {{ else }}
+    <meta name="image" content="{{ .Site.Params.defaultImage }}" />
+  {{ end }}
+
+  {{ template "_internal/twitter_cards.html" . }}
+  {{ template "_internal/opengraph.html" . }}
+
+  <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+
+  {{ if .Permalink }}
+    <link rel="canonical" href="{{ .Permalink }}">
+  {{ end }}
+
+  {{ if .Site.Params.webmention }}
+    <link rel="webmention" href="{{ .Site.Params.webmention.webmentionUrl }}" />
+    <link rel="pingback" href="{{ .Site.Params.webmention.pingbackUrl }}" />
+  {{ end }}
+
+  <link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+  {{ if .Site.IsServer }}
+    {{ $cssOpts := (dict "targetPath" "css/byte.css" "enableSourceMap" true ) }}
+    {{ $styles := resources.Get "scss/byte.scss" | resources.ExecuteAsTemplate "style.byte.css" . | toCSS $cssOpts }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}" media="screen">
+  {{ else }}
+    {{ $cssOpts := (dict "targetPath" "css/byte.css" ) }}
+    {{ $styles := resources.Get "scss/byte.scss" | resources.ExecuteAsTemplate "style.byte.css" . | toCSS $cssOpts | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" crossorigin="anonymous" media="screen" />
+  {{ end }}
+
+  {{ if .Site.Params.rtl }}
+    {{ if .Site.IsServer }}
+      {{ $cssOpts := (dict "targetPath" "css/byte-rtl.css" "enableSourceMap" true ) }}
+      {{ $styles := resources.Get "scss/byte-rtl.scss" | resources.ExecuteAsTemplate "style.byte-rtl.css" . | toCSS $cssOpts }}
+      <link rel="stylesheet" href="{{ $styles.RelPermalink }}" media="screen">
+    {{ else }}
+      {{ $cssOpts := (dict "targetPath" "css/byte-rtl.css" ) }}
+      {{ $styles := resources.Get "scss/byte-rtl.scss" | resources.ExecuteAsTemplate "style.byte-rtl.css" . | toCSS $cssOpts | minify | fingerprint }}
+      <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" crossorigin="anonymous" media="screen" />
+    {{ end }}
+  {{ end }}
+
+  {{ if  or (eq .Site.Params.colorScheme "auto") (eq .Site.Params.colorScheme "dark") }}
+    {{ if .Site.IsServer }}
+      {{ $cssOpts := (dict "targetPath" "css/byte-dark.css" "enableSourceMap" true ) }}
+      {{ $styles := resources.Get "scss/byte-dark.scss" | resources.ExecuteAsTemplate "style.byte-dark.css" . | toCSS $cssOpts }}
+      <link rel="stylesheet" href="{{ $styles.RelPermalink }}" media="screen">
+    {{ else }}
+      {{ $cssOpts := (dict "targetPath" "css/byte-dark.css" ) }}
+      {{ $styles := resources.Get "scss/byte-dark.scss" | resources.ExecuteAsTemplate "style.byte-dark.css" . | toCSS $cssOpts | minify | fingerprint }}
+      <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" crossorigin="anonymous" media="screen" />
+    {{ end }}
+  {{ end }}
+
+  {{ range .Site.Params.customCSS }}
+    <link rel="stylesheet" href="{{ . | relURL }}" />
+  {{ end }}
+
+  {{ range .Site.Params.customSCSS }}
+    {{/* We don't change the targetPath to because it's transparent to users */}}
+    {{ if $.Site.IsServer }}
+      {{ $cssOpts := (dict "enableSourceMap" true ) }}
+      {{ $styles := resources.Get . | toCSS $cssOpts }}
+      <link rel="stylesheet" href="{{ $styles.RelPermalink }}" media="screen">
+    {{ else }}
+      {{ $styles := resources.Get . | toCSS | minify | fingerprint }}
+      <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" crossorigin="anonymous" media="screen" />
+    {{ end }}
+  {{ end }}
+
+  <link rel="icon" type="image/png" href="{{ .Site.Params.favicon_32 | default "/images/favicon-32x32.png" | relURL }}" sizes="32x32">
+  <link rel="icon" type="image/png" href="{{ .Site.Params.favicon_16 | default "/images/favicon-16x16.png" | relURL }}" sizes="16x16">
+
+  <link rel="apple-touch-icon" href="{{ .Site.Params.touchicon | default "/images/apple-touch-icon.png" | relURL }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ .Site.Params.touchicon | default "/images/apple-touch-icon.png" | relURL }}">
+
+  {{ range .AlternativeOutputFormats -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
+  {{ end -}}
+
+  {{ if .Site.Params.enableTwemoji }}
+    <script defer src="https://twemoji.maxcdn.com/v/13.0.2/twemoji.min.js"
+      integrity="sha384-wyB/MspSJ/r2bT2kCj44qtsYRYlpzO2oAPhRj5myrWD63dt6qWv4x8AZe7Fl3K3b" crossorigin="anonymous"></script>
+  {{ end }}
+
+  {{ hugo.Generator }}

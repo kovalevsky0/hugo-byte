@@ -1,0 +1,16 @@
+{{ if .Site.Params.isFloatFollowBtnShown }}
+  {{ if .Site.Params.Subscription.subscriptionPageLink }}
+    <a href="#subscription" class="subscribe-float-btn">
+      <div>
+        <!-- <i aria-hidden="true" class="fa fa-plus"></i> -->
+        <span>Follow</span>
+      </div>
+      {{ if $.Site.Data.revueSubscribersCount.count }}
+        <div class="subscribe-float-btn__count">
+          <i aria-hidden="true" class="fa fa-users"></i>
+          <span class="subscribers-counter" data-target="{{ $.Site.Data.revueSubscribersCount.count }}">0</span>
+        </div>
+      {{ end }}
+    </a>
+  {{ end }}
+{{ end }}

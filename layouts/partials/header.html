@@ -1,0 +1,23 @@
+<header class="header">
+  <div class="container">
+    <div class="header__inner">
+      <a href="{{ .Site.BaseURL }}" class="logo-title u-url">{{ .Site.Title }}</a>
+      {{ if or .Site.Menus.main .Site.IsMultiLingual }}
+        <div>
+          <nav class="navbar">
+            {{ with .Site.Menus.main}}
+              {{ range sort . }}
+                <a
+                  class="navbar__link"
+                  href="{{ .URL | relLangURL }}">
+                    {{ .Pre }}
+                    {{ .Name }}
+                </a>
+              {{ end }}
+            {{ end }}
+          </nav>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</header>

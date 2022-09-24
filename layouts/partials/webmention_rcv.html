@@ -1,0 +1,66 @@
+{{ $domain := "https://maxoid.io" }} <!-- Hard-code the domain during testing on localhost, branches -->
+{{ $num_mentions_max := 200 }}
+{{ $webmentions_rcv := getJSON (printf "https://webmention.io/api/mentions?target=%s%s&per-page=%d&page=0" $domain .RelPermalink $num_mentions_max) }}
+
+{{ with $webmentions_rcv.links }}
+    <a id="webmentions"></a>
+    <h2>Webmentions</h2>
+    {{ $.Scratch.Set "__like_cnt" 0 }}
+    {{ $.Scratch.Set "__repost_cnt" 0 }}
+    {{ range . }}
+        {{ $activity := (index . "activity") }}
+        {{ $activity_type := (index $activity "type") }}
+        {{ $data := (index . "data") }}
+        {{ $author_obj := (index $data "author") }}
+        {{ $author_name := (index $author_obj "name") }}
+        {{ $author_photo := (index $author_obj "photo") }}
+        {{ $author_url := (index $author_obj "url") }}
+        {{ $mention_string := (index $data "content") }}
+        {{ $mention_url := (index $data "url") }}
+        {{ with (index $data "published") }}
+            {{ $.Scratch.Set "__published_date" (. | replaceRE "T.*" "" | dateFormat "Mon Jan 2, 2006") }}
+        {{ end }}
+        {{ if (eq $activity_type "reply") }}
+            <dl class="webmention comment">
+                <dt>
+                    Comment by <a href="{{ $author_url }}">{{ $author_name }}</a> on {{ $.Scratch.Get "__published_date" }}
+                    {{ printf "<a href=\"%s\">" $mention_url | safeHTML }}
+                    {{ printf "<i class=\"%s fa-link fa-xs\"></i>" "far" | safeHTML }}
+                    {{ printf "</a>" | safeHTML }}
+                </dt>
+                <dd>
+                    {{ $mention_string | safeHTML }}
+                </dd>
+            </dl>
+        {{ else if (eq $activity_type "link") }}
+            {{/* partial "debugprint.html" $data */}}
+            <dl class="webmention mention">
+                <dt>
+                    Mentioned by <a href="{{ $author_url }}">{{ $author_name }}</a> on {{ $.Scratch.Get "__published_date" }}
+                    {{ printf "<a href=\"%s\">" $mention_url | safeHTML }}
+                    {{ printf "<i class=\"%s fa-link fa-xs\"></i>" "far" | safeHTML }}
+                    {{ printf "</a>" | safeHTML }}
+                </dt>
+                <dd>
+                    {{ $mention_string | safeHTML }}
+                </dd>
+            </dl>
+        {{ else if (eq $activity_type "like") }}
+            {{ $.Scratch.Add "__like_cnt" 1 }}
+        {{ else if (eq $activity_type "repost") }}
+            {{ $.Scratch.Add "__repost_cnt" 1 }}
+        {{ else }}
+            {{ $activity }}
+        {{ end }}
+    {{ end }}
+    {{ if (ge ($.Scratch.Get "__like_cnt") 1) }}
+        <p>
+            <strong>Likes</strong>: {{ $.Scratch.Get "__like_cnt" }}
+        </p>
+    {{ end }}
+    {{ if (ge ($.Scratch.Get "__repost_cnt") 1) }}
+        <p>
+            <strong>Reposts</strong>: {{ $.Scratch.Get "__repost_cnt" }}
+        </p>
+    {{ end }}
+{{ end }}

@@ -1,0 +1,145 @@
+.post-card {
+  position: relative;
+  flex: 1 1 calc(33% - 30px);
+  margin: 0 15px 30px;
+  width: 100%;
+
+  flex: 1 1 calc(100% - 30px);
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 15px 15px;
+  border-radius: 4px;
+  background: #37373a;
+
+  &__thumbnail {
+    height: 175px;
+    margin-top: 35px;
+    flex: 1 1 35%;
+    margin-left: 35px;
+  }
+
+  &__content {
+    flex: 1 1 65%;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  /*
+  &__thumbnail {
+    position: relative;
+    height: 200px;
+    display: block;
+    margin: 0 0 0.5em;
+  }*/
+
+  &__thumbnail > div,
+  &__thumbnail > img {
+    height: 100%;
+    border-radius: 3px;
+  }
+
+  &__title {
+    margin: 0 0 0.5em;
+    display: inline-block;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    font-family: "Roboto Mono", monospace;
+    color: var(--theme-dark-second-text-color);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+
+  &__excerpt {
+    padding: 10px;
+    margin: 0 0 0.8em;
+    text-overflow: ellipsis;
+    overflow-wrap: normal;
+    /* max-height: 120px; */
+    border-radius: 3px;
+
+    background: #2a2b2d;
+
+    p {
+      margin: 0;
+      font-size: 1.125rem!important;
+    }
+  }
+
+
+  &__info {
+    color: #90a2aa;
+    font-size: 0.8rem;
+    font-family: "Roboto Mono", monospace;
+
+    a {
+      color: #90a2aa;
+    }
+  }
+
+  &__type {
+    position: absolute;
+    // background: #d89d14;
+    padding: 5px 10px;
+    border-radius: 0px 4px 0px 4px;
+    top: 0px;
+    right: 0px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+
+    &_note {
+      background: #d5a53a;
+    }
+
+    &_blog {
+      background: #5a858c;
+    }
+
+    &_post {
+      background: #b27392;
+    }
+  }
+}
+
+@media (max-width: 1360px) {
+  .post-card {
+    &_tile {
+      flex: 1 1 calc(50% - 30px);
+      max-width: calc(50% - 30px);
+    }
+  }
+}
+
+@media (max-width: 690px) {
+  .post-card {
+    &_tile {
+      flex: 1 1 calc(100% - 30px);
+      max-width: calc(100% - 30px);
+    }
+
+    &_row {
+      flex-direction: column;
+    }
+
+    &_row &__thumbnail {
+      width: 100%;
+      height: 200px;
+      margin-left: 0px;
+    }
+
+    &_row &__content {
+      margin-left: 0;
+    }
+
+    &_row &__header {
+      flex-direction: column;
+    }
+  }
+}

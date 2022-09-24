@@ -1,0 +1,258 @@
+// .article {
+//   /* temp, test */
+//   width: 100%;
+//   max-width: 1100px;
+//   margin: 0 auto;
+// }
+
+.content {
+  /* font-family: charter, Georgia, Cambria, "Times New Roman", Times, serif; */
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Roboto, Arial,
+    Noto Sans, sans-serif, Apple Color Emoji, Segoe UI, Segoe UI Emoji,
+    Segoe UI Symbol, Noto Color emoji;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-size: 1.3rem;
+  margin-bottom: 40px;
+  border-radius: 3px;
+  // background: #353535;
+  // background: #1b253a;
+
+  .heading-link {
+    color: #f4f4f4 !important;
+    border: none !important;
+    opacity: 0.5;
+
+    &:hover,
+    &:active {
+      background: none !important;
+    }
+  }
+
+  &__inner {
+    padding: 40px 60px 40px 60px;
+  }
+
+  &__top,
+  &__bottom {
+    overflow-x: hidden;
+  }
+
+  &__top {
+    border-radius: 3px 3px 0 0;
+  }
+
+  &__info {
+    color: $post-info-color;
+    font-size: 0.8rem;
+    font-family: "Roboto Mono", monospace;
+
+    a {
+      color: $post-info-color;
+    }
+  }
+
+  &__bottom {
+    border-radius: 0 0 3px 3px;
+  }
+
+  & a:not(.post-tag) {
+    // color: $link-color-dark;
+    color: #f4f4f4;
+    font-weight: bold;
+    border-bottom: 3px solid #fa9312;
+    box-shadow: inset 0 -7px 0 rgba(178, 192, 232, 0.25);
+
+    &:hover,
+    &:active {
+      background: #fa9312;
+      color: #111827;
+      box-shadow: none;
+    }
+  }
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
+    width: 100%;
+  }
+
+  &__image {
+    width: 100%;
+    height: 500px;
+
+    img {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  &__image-inner {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+    // border-top-left-radius: 3px;
+    // border-top-right-radius: 3px;
+    border-radius: 3px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .content {
+    h1 {
+      font-size: 2.2rem;
+      line-height: 1.4;
+    }
+  }
+}
+
+@media (max-width: 690px) {
+  .content {
+    margin: 0 -30px;
+
+    &__inner {
+      padding: 20px 20px 40px 20px;
+    }
+
+    h1 {
+      font-size: 1.7rem;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+
+    &__image {
+      height: 250px;
+    }
+
+    &__image-inner {
+      border-radius: 0;
+    }
+  }
+}
+
+/* Styles for markdown content */
+
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+  font-family: "Roboto Mono", monospace;
+  font-weight: bold;
+  word-break: break-word;
+}
+
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+  margin-bottom: 2rem;
+}
+
+.content hr {
+  border: none;
+}
+
+.content header hr,
+.content footer hr {
+  border-bottom-width: 2px;
+}
+
+.content h2,
+.content hr {
+  // border-bottom-width: 4px;
+  // border-bottom-style: solid;
+}
+
+.content h3 {
+  // border-bottom-width: 2px;
+  // border-bottom-style: solid;
+}
+
+.content h2,
+.content h3 {
+  // border-bottom-color: #3e4a62;
+  // border-bottom-style: dashed;
+}
+
+.content hr {
+  border-bottom-color: #3e4a62;
+  border-bottom-style: solid;
+}
+
+.content blockquote,
+dl,
+ol,
+p,
+table,
+ul {
+  font-size: 1.125rem !important;
+}
+
+.content blockquote {
+  margin: 0 0 1.5em;
+  padding: 1em 1.5em;
+  border-left: 3px solid var(--common-link-color);
+  font-family: "Roboto Mono", monospace;
+}
+
+.content blockquote {
+  background: #090e1a;
+}
+
+.content blockquote p {
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-style: italic;
+}
+
+.content blockquote p,
+.content blockquote ul,
+.content blockquote ol {
+  margin: 0;
+}
+
+.content :not(pre) > code {
+  padding: 4px 8px !important;
+  border-radius: 0.32rem;
+  font-size: 1rem;
+  border-radius: 0.35rem;
+  font-family: monospace;
+  display: inline-block;
+}
+
+.content :not(pre) > code {
+  background-color: rgb(9, 14, 26);
+  border: 1px solid #1d2842;
+  color: #dc940d;
+}
+
+.content table tr {
+  border-top: 1px solid #757575;
+}
+
+.content table th {
+  font-weight: bold;
+}
+
+.content table th,
+.content table td {
+  border: 1px solid #757575;
+  padding: 6px 13px;
+}
+
+.content table tr {
+  border-top: 1px solid #757575;
+}
+
+.content table th,
+.content table td {
+  border: 1px solid #757575;
+  padding: 6px 13px;
+}

@@ -1,0 +1,40 @@
+.go-back {
+  display: inline-block;
+  font-family: "Roboto Mono";
+
+  a {
+    color: $second-text-color-dark;
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    &:hover,
+    &:active {
+      background: #f4f4f4;
+      color: #111827;
+    }
+
+    span {
+      margin-left: 10px;
+    }
+
+    &_right {
+      composes: left;
+      flex-direction: row-reverse;
+
+      svg {
+        transform: rotate(180deg);
+      }
+
+      span {
+        margin-left: 0;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+

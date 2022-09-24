@@ -1,0 +1,23 @@
+.subscribe-float-btn {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 10px;
+  right: 18px;
+  z-index: 100;
+  background: #f4f4f4;
+  color: #111827;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  & > div {
+    padding: 8px 15px;
+  }
+
+  &__count {
+    // margin-left: 14px;
+    // background: #fa9312;
+    background: linear-gradient(-90deg, #1a3162, #453762);
+    color: #f4f4f4;
+  }
+}

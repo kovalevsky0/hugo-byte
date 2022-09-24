@@ -1,0 +1,31 @@
+<article class="post-card h-entry">
+  {{ if .Page.Params.Image }}
+    <a href="{{ .Params.externalLink | default .RelPermalink }}" class="post-card__thumbnail">
+      <img src="{{ .Site.BaseURL }}{{ .Page.Params.Image }}" alt="" />
+    </a>
+  {{ end }}
+  <div class="post-card__content">
+    <header class="post-card__header">
+      {{ with .Page.Params.Tags }}
+        {{ partial "taxonomy/tags.html" . }}
+      {{ end }}
+      <a class="post-card__title p-name" href="{{ .Params.externalLink | default .RelPermalink }}">{{ .Title }}</a>
+    </header>
+    <section class="post-card__excerpt">
+      <p class="p-summary">
+        {{ if .Page.Params.Excerpt }}
+          {{ .Page.Params.Excerpt }}
+        {{ else }}
+          {{ .Summary | safeHTML | truncate .Site.Params.SummaryLength }}
+        {{ end }}
+      </p>
+    </section>
+    <footer>
+      <div class="post-card__info">
+        <time class="dt-published" dateTime={{ .Date.Format (.Site.Params.dateFormat | default "02/01/2006" ) }}>
+          {{ .Date.Format (.Site.Params.dateFormat | default "02/01/2006" ) }}
+        </time>
+      </div>
+    </footer>
+  </div>
+</article>

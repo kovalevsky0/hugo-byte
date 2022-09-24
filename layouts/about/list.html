@@ -1,0 +1,16 @@
+{{ define "title" }}
+  {{ title (i18n (lower .Title)) | default .Title }} · {{ .Site.Title }}
+{{ end }}
+{{ define "content" }}
+  <section class="container">
+    <br>
+    <nav class="breadcrumbs">
+      <a href="/home">Home</a>
+      <span class="splitter">/</span>
+      <span>Notes</span>
+    </nav>
+    {{ partial "page.html" . }}
+  </section>
+{{ end }}
+
+

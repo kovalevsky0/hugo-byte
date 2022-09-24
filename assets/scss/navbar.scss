@@ -1,0 +1,53 @@
+.navbar {
+  padding: 0 15px;
+  font-size: 1rem;
+  font-family: "Roboto Mono", monospace;
+  color: $second-text-color-dark;
+
+  &__link {
+    margin-right: 8px;
+    color: $second-text-color-dark;
+    padding: 0 2px 0 7px;
+    // font-weight: bold;
+    text-transform: uppercase;
+
+    i {
+      // background: -webkit-linear-gradient(#5c55c9, #b555c9);
+      // background-clip: border-box;
+      // background-clip: border-box;
+      // background-clip: border-box;
+      // -webkit-background-clip: text;
+      // -webkit-text-fill-color: transparent;
+    }
+
+    &_active {
+      color: $second-text-color-dark;
+      border-bottom: 2px solid;
+    }
+
+    &:hover,
+    &:active {
+      background: #f4f4f4;
+      color: #111827;
+
+      i {
+        color: #111827;
+      }
+    }
+  }
+
+  &__link:last-child {
+    margin-right: 0;
+  }
+
+  .line {
+    margin-left: 10px;
+    border-right: 1px solid;
+    width: 1px;
+    padding: 2px 0;
+  }
+}
+
+// .navbar .line {
+//   border-color: var(--theme-dark-second-text-color);
+// }

@@ -1,0 +1,27 @@
+<div>
+  <br />
+  {{ .Content }}
+  {{ if eq .Type "tags" }}
+    <nav class="breadcrumbs">
+      <a href="/">Home</a>
+      <span class="splitter">/</span>
+      <a href="/tags">Tags</a>
+      <span class="splitter">/</span>
+      <span>{{ .Title }}</span>
+    </nav>
+  {{ end }}
+  <div class="page-title">
+    <h1>#{{ .Title }}</h1>
+  </div>
+  <div>
+    <section>
+        <div class="posts-list">
+          {{ range .Paginator.Pages }}
+            {{ .Scratch.Set "is_label_visible" true }}
+            {{ partial "li.html" . }}
+          {{ end }}
+      </div>
+      {{ partial "pagination.html" . }}
+    </section>
+  </div>
+</div>

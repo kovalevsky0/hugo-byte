@@ -1,0 +1,10 @@
+<div>
+  {{ .Content }} 
+  <div class="posts-list">
+    {{ $paginate := .Paginate (where (where .Pages ".Params.type" "post") ".Params.public" "==" true) }}
+    {{ range $paginate.Pages.ByDate.Reverse }}
+      {{- .Render "li" -}}
+    {{ end }}
+  </div>
+  {{ partial "pagination.html" . }}
+</div>

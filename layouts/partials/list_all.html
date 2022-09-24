@@ -1,0 +1,12 @@
+<div>
+  <div class="posts-list">
+    {{ $paginate := .Paginate (where .Site.Pages ".Params.public" "==" true) }}
+    {{ range $paginate.Pages.ByDate.Reverse }}
+      {{ if ne .Params.in_feed false }}
+          {{ .Scratch.Set "is_label_visible" true }}
+          {{ partial "li.html" . }}
+      {{ end }}
+    {{ end }}
+  </div>
+  {{ partial "pagination.html" . }}
+</div>

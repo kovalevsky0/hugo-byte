@@ -1,0 +1,24 @@
+.breadcrumbs {
+  font-family: "Roboto Mono";
+  margin-bottom: 1rem;
+
+  span:not(.splitter) {
+    opacity: 0.6;
+  }
+
+  &__splitter {
+    margin: 0 0.5rem;
+    opacity: 1;
+  }
+
+  a {
+    color: var(--theme-dark-second-text-color);
+
+    &:hover,
+    &:active {
+      background: #f4f4f4;
+      color: #111827;
+    }
+  }
+}
+

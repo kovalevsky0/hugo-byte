@@ -1,0 +1,22 @@
+<div class="about-block h-card">
+  {{ partial "avatar" . }}
+  <div>
+    <h1>{{ .Site.Params.greetingTitle | safeHTML }}</h1>
+    {{ range .Site.Params.blurbContent }}
+      <p class="p-note">{{ . | safeHTML }}</p>
+    {{ end }}
+    <p>
+      <span>More on
+        <a class="about-block__link" href="/about">
+          <i aria-hidden="true" class="fa fa-user color-skyblue"></i> about.md</a>
+      </span>
+      {{ if .Site.Params.email }}
+        <span> • </span>
+        <span>Contact <a class="about-block__link about-block__link_email u-email" href="mailto:{{ .Site.Params.email }}" rel="me">
+          <i aria-hidden="true" class="fa fa-envelope"></i> {{ .Site.Params.email }}</a>
+        </span>
+      {{ end }}
+    </p>
+    {{ partial "socials_list" . }}
+  </div>
+</div>

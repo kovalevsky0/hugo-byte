@@ -1,0 +1,48 @@
+{{ $paginator := .Paginator }}
+{{ $adjacent_links := 2 }}
+{{ $max_links := (add (mul $adjacent_links 2) 1) }}
+{{ $lower_limit := (add $adjacent_links 1) }}
+{{ $upper_limit := (sub $paginator.TotalPages $adjacent_links) }}
+{{ if gt $paginator.TotalPages 1 }}
+<div style="text-align: center;">
+  {{ if $paginator.HasPrev }}
+    {{ if ne $paginator.PageNumber 1 }}
+    <a class="pagination-link" href="{{ $paginator.First.URL }}">&laquo;</a>
+    {{ end }}
+    <a class="pagination-link hidden" href="{{ $paginator.Prev.URL }}">&lsaquo;</a>
+  {{ end }}
+  {{ range $paginator.Pagers }}
+    {{ $.Scratch.Set "page_number_flag" false }}
+    {{ if gt $paginator.TotalPages $max_links }}
+      {{ if le $paginator.PageNumber $lower_limit }}
+        {{ if le .PageNumber $max_links }}
+          {{ $.Scratch.Set "page_number_flag" true }}
+        {{ end }}
+      {{ else if ge $paginator.PageNumber $upper_limit }}
+        {{ if gt .PageNumber (sub $paginator.TotalPages $max_links) }}
+          {{ $.Scratch.Set "page_number_flag" true }}
+        {{ end }}
+      {{ else }}
+        {{ if and ( ge .PageNumber (sub $paginator.PageNumber $adjacent_links) ) ( le .PageNumber (add $paginator.PageNumber $adjacent_links) ) }}
+          {{ $.Scratch.Set "page_number_flag" true }}
+        {{ end }}
+      {{ end }}
+    {{ else }}
+      {{ $.Scratch.Set "page_number_flag" true }}
+    {{ end }}
+    {{ if eq ($.Scratch.Get "page_number_flag") true }}
+      {{ if eq . $paginator }}
+        <a href="" class="pagination-link pagination-link_active pagination-link_disabled">{{ .PageNumber }}</a>
+      {{ else }}
+        <a href="{{ .URL }}" class="pagination-link">{{ .PageNumber }}</a>
+      {{ end }}
+    {{ end }}
+  {{ end }}
+  {{ if $paginator.HasNext }}
+    <a class="pagination-link hidden" href="{{ $paginator.Next.URL }}">&rsaquo;</a>
+    {{ if ne $paginator.PageNumber $paginator.TotalPages }}
+      <a class="pagination-link" href="{{ $paginator.Last.URL }}">&raquo;</a>
+    {{ end }}
+  {{ end }}
+</div>
+{{ end }}

@@ -1,0 +1,26 @@
+.pagination-link {
+  font-family: "Roboto Mono", monospace;
+  padding: 6px 11px;
+  //border-radius: 3px;
+  margin-right: 12px;
+
+  color: #e2e2e2;
+
+  &:hover {
+    background: #f4f4f4;
+    color: #111827;
+  }
+
+  &_disabled {
+    color: #cccccda3;
+    pointer-events: none;
+  }
+
+  &_active {
+    background: #f4f4f4;
+    color: #111827;
+    pointer-events: none;
+  }
+}
+
+

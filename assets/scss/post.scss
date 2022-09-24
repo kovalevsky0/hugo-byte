@@ -1,0 +1,249 @@
+.post {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  // justify-content: space-between;
+  justify-content: flex-start;
+  width: 100%;
+  // border-bottom: 2px solid #1f2937;
+  // margin-bottom: 1rem;
+  // padding-bottom: 1rem;
+
+  &__line {
+    width: 3px;
+    margin-right: 2rem;
+    background: #1f2937;
+    height: calc(100% - 0px);
+    position: relative;
+    margin-top: 10px;
+
+    &-content {
+      position: absolute;
+      left: -120px;
+      text-align: right;
+    }
+
+    &-point {
+      background: #1f2937;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      position: absolute;
+      top: -5px;
+      left: -18px;
+      border: 3px solid #05080f;
+      text-align: center;
+      line-height: 35px;
+
+      &:hover,
+      &:active {
+        background: #f4f4f4;
+        color: #111827;
+        border-color: #f4f4f4;
+
+        i {
+          color: #111827;
+        }
+      }
+    }
+
+    &-views {
+      margin-top: 23px;
+    }
+
+    &-views-point {
+      background: #1f2937;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      position: absolute;
+      top: 45px;
+      left: -13px;
+      border: 2px solid #05080f;
+      text-align: center;
+      line-height: 25px;
+      font-size: 13px;
+    }
+  }
+
+  &__inner {
+    // width: 80%;
+    display: flex;
+    align-items: flex-start;
+    padding: 10px 0px 15px 0px;
+
+    p {
+      margin: 0 0 1rem 0;
+    }
+  }
+
+  &__info {
+    width: 20%;
+    text-align: right;
+
+    i {
+      color: #c96a55;
+      // color: #25cffa;
+    }
+  }
+
+  header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+
+    h4 {
+      color: #f4f4f4;
+      font-weight: bold;
+      background: linear-gradient(-90deg, #1a3162, #453762);
+      padding: 3px 14px;
+      font-size: 1.6rem;
+
+      &:hover,
+      &:active {
+        // text-decoration: underline;
+
+        background: #f4f4f4;
+        color: #111827;
+      }
+    }
+  }
+
+  section {
+    & > p {
+      font-size: 0.875rem !important;
+    }
+  }
+
+  &__type {
+    // display: none; // temp
+
+    // background: #2a99ad;
+    // color: #f4f4f4;
+    // padding: 3px 10px;
+    // border-radius: 3px;
+    // margin-right: 1rem;
+    // font-weight: bold;
+    // border: 2px solid #1f2938;
+    // background: #1f2938;
+    // background: none;
+    // border-radius: 3px;
+
+    &_blog {
+      //background: #2a99ad;
+      i {
+        color: #2a99ad;
+      }
+    }
+
+    &_note {
+      //background: #e5ad0f;
+      i {
+        color: #e5ad0f;
+      }
+    }
+
+    &_left {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      // border-radius: 3px 0 3px 0;
+      // background: #111827;
+      background: none;
+      border: none;
+      // border-right: 2px solid #1f2938;
+      // border-bottom: 2px solid #1f2938;
+
+      background: #f4f4f4;
+      color: #111827;
+      border-color: #f4f4f4;
+
+      i {
+        color: #111827;
+      }
+    }
+
+    // &:hover,
+    // &:active {
+    //   background: #f4f4f4;
+    //   color: #111827;
+    //   border-color: #f4f4f4;
+
+    //   i {
+    //     color: #111827;
+    //   }
+    // }
+  }
+
+  &__image {
+    width: 260px;
+    height: 160px;
+    border-radius: 3px;
+    margin: 0 1rem 0 0rem;
+
+    img {
+      border-radius: 3px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    width: 100%;
+
+    &_image {
+      width: calc(100% - 260px);
+    }
+  }
+
+  &__read-more {
+    color: #f4f4f4;
+    text-decoration: underline;
+
+    &:hover,
+    &:active {
+      text-decoration: none;
+      color: #111827;
+      background-color: #f4f4f4;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .post {
+    flex-direction: column;
+
+    header {
+      flex-direction: column;
+
+      h4 {
+        margin-top: 1rem;
+      }
+    }
+
+    &__inner {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    &__image {
+      margin: 0 0 0.5rem 0rem;
+      width: 100%;
+      height: 300px;
+    }
+
+    &__content {
+      width: 100%;
+    }
+
+    &__info {
+      width: 100%;
+      text-align: left;
+    }
+
+    &__line {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,55 @@
+<div>
+  {{ if eq .Params.Type "blog" }}
+    {{ .Scratch.Set "go_back_url" "/blog" }}
+    {{ .Scratch.Set "go_back_label" "Go Back To Blog" }}
+    {{ partial "go_back.html" . }}
+  {{ end }}
+  <article class="content">
+    {{ if .Page.Params.Image }}
+        <div class="content__image">
+      <Img class="content__image-inner" src="/{{ .Page.Params.Image }}" alt="{{ .Title }}" ></Img>
+          {{ if .Page.Params.ImageCopyright }}
+            <div
+              style="
+                font-size: 14px;
+                text-align: right;
+                margin-top: 10px;
+                margin-right: 20px;
+              "
+            >
+              Photo by
+              {{ if .Page.Params.ImageCopyrightUrl }}
+                <a href="{{.Page.Params.ImageCopyrightUrl}}">{{ .Page.Params.ImageCopyright }}</a>
+              {{ else }}
+                {{ .Page.Params.ImageCopyright }}
+              {{ end }}
+            </div>
+          {{ end }}
+        </div>
+    {{ end }}
+    <div class="content__inner">
+      <header>
+        {{ if eq .Params.Type "blog" }}
+          <h1>{{ .Title }}</h1>
+        {{ end }}
+        {{ if and (eq .Kind "page") (or (eq .Params.Type "blog") (eq .Params.Type "note") (eq .Params.Type "") (not (isset .Params "type"))) }}
+          <div class="content__info">
+            <time dateTime={{ .Date.Format (.Site.Params.dateFormat | default "02/01/2006" ) }}>
+              <i aria-hidden="true" class="fa fa-calendar"></i>
+              {{ .Date.Format (.Site.Params.dateFormat | default "02/01/2006" ) }}
+            </time>
+          </div>
+        {{ end }}
+        {{ with .Params.Tags }}
+          {{ partial "taxonomy/tags.html" . }}
+        {{ end }}
+        {{ if and (eq .Kind "page") (or (eq .Type "blog") (eq .Type "notes")) }}
+          <hr />
+        {{ end }}
+      </header>
+      <section>
+        {{ .Content }}
+      </section>
+    </div>
+  </article>
+</div>

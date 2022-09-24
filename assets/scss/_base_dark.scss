@@ -1,0 +1,86 @@
+@mixin base_dark {
+  color: $second-text-color-dark;
+  background-color: $bg-color-dark;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    // color: $alt-fg-color-dark;
+
+    &:hover .heading-link {
+      visibility: visible;
+    }
+
+    .heading-link {
+      color: $link-color-dark;
+      font-weight: inherit;
+      text-decoration: none;
+      font-size: 80%;
+      visibility: hidden;
+    }
+
+    .title-link {
+      color: inherit;
+      font-weight: inherit;
+      text-decoration: none;
+    }
+  }
+
+  code {
+    background-color: $alt-bg-color-dark;
+    color: $fg-color-dark;
+  }
+
+  pre {
+    code {
+      background-color: inherit;
+      color: inherit;
+    }
+  }
+
+  blockquote {
+    border-left: 3px solid $link-color-dark;
+  }
+
+  table td,
+  table th {
+    border: 2px solid $alt-fg-color-dark;
+  }
+}
+
+body.colorscheme-dark {
+  @include base_dark();
+}
+
+body.colorscheme-auto {
+  @media (prefers-color-scheme: dark) {
+    @include base_dark();
+  }
+}
+
+.color-yellow {
+  color: #facc13;
+}
+
+.color-skyblue {
+  color: #25cffa;
+}
+
+.color-pink {
+  color: #c9557a;
+}
+
+.color-green {
+  color: #4db140;
+}
+
+.color-orange {
+  color: #fa9313;
+}
+
+.color-cyan {
+  color: #13faae;
+}

@@ -1,0 +1,32 @@
+{{ if .Site.Params.Subscription }}
+<div class="subscription">
+  <header>
+    <h3 class="subscription__title">
+      <i aria-hidden="true" class="fa fa-envelope"></i>
+      {{ .Site.Params.Subscription.title | safeHTML }}
+    </h3>
+  </header>
+  <section class="subscription__body">
+    <p>{{ .Site.Params.Subscription.description | safeHTML }}</p>
+    <div id="revue-embed">
+      <div class="subscription__form-wrapper">
+        <form action="{{ .Site.Params.Subscription.endpoint }}" method="post" id="revue-form" name="revue-form"  target="_blank">
+          <input required class="revue-form-field" placeholder="Your email address..." type="email" name="member[email]" id="member_email">
+          <button class="subscription__btn" type="submit" name="member[subscribe]" id="member_submit">
+            Subscribe
+          </button>
+        </form>
+        {{ if $.Site.Data.revueSubscribersCount.count }}
+          <h4>
+            <i aria-hidden="true" class="fa fa-users"></i>
+            <span class="subscribers-counter" data-target="{{ $.Site.Data.revueSubscribersCount.count }}">0</span>
+            members
+          </h4>
+        {{ end }}
+      </div>
+      <div class="revue-form-footer subscription__agreement">By subscribing, you agree with Revue’s <a target="_blank" href="https://www.getrevue.co/terms">Terms of Service</a> and <a target="_blank" href="https://www.getrevue.co/privacy">Privacy Policy</a>.</div>
+    </div>
+  </section>
+</div>
+{{ end }}
+

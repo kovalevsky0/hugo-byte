@@ -1,0 +1,11 @@
+{{ if .Site.Params.social }}
+<ul class="socials-list">
+  {{ range .Site.Params.social }}
+    <li>
+      <a target="_blank" href="{{ .url }}" rel="me">
+        <i class="{{ .icon }}" style="color: {{ .iconColor }}"></i>
+      </a>
+    </li>
+  {{ end }}
+</ul>
+{{ end }}

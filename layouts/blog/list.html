@@ -1,0 +1,18 @@
+{{ define "title" }}
+  {{ title (i18n (lower .Title)) | default .Title }} · {{ .Site.Title }}
+{{ end }}
+{{ define "content" }}
+  <div class="h-feed">
+    <br>
+    <div class="page-title">
+      <h1 class="p-name">
+          {{ title (i18n (lower .Title)) | default .Title }}
+      </h1>
+    </div>
+    <div>
+      {{ partial "list_blog.html" . }}
+    </div>
+  </div>
+{{ end }}
+
+

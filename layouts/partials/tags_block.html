@@ -1,0 +1,16 @@
+<div class="info-card">
+  <div class="tags-card">
+    <h3>
+      <span>Tags</span>
+      <!--<Icon src={icons.emojiLabel.src} widthSize="25px" />-->
+    </h3>
+    <div class="post-tags post-tags_column">
+      {{ range .Site.Params.sidePanelTags }}
+        <div class="post-tags__tag">
+          <a href="/tags/{{ . }}" class="post-tag p-category">#{{ . }}</a>
+        </div>
+      {{ end }}
+    </div>
+    <a href="/tags" class="tags-card__more">...more</a>
+  </div>
+</div>
