@@ -1,7 +1,7 @@
 <header class="header">
   <div class="container">
     <div class="header__inner">
-      <a href="{{ .Site.BaseURL }}" class="logo-title u-url">{{ .Site.Title }}</a>
+      <a href="{{ .Site.BaseURL }}" class="logo-title u-url">{{ .Site.Params.LogoTitle }}</a>
       {{ if or .Site.Menus.main .Site.IsMultiLingual }}
         <div>
           <nav class="navbar">

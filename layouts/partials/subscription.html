@@ -1,32 +1,50 @@
-{{ if .Site.Params.Subscription }}
-<div class="subscription">
-  <header>
-    <h3 class="subscription__title">
-      <i aria-hidden="true" class="fa fa-envelope"></i>
-      {{ .Site.Params.Subscription.title | safeHTML }}
-    </h3>
-  </header>
-  <section class="subscription__body">
-    <p>{{ .Site.Params.Subscription.description | safeHTML }}</p>
-    <div id="revue-embed">
-      <div class="subscription__form-wrapper">
-        <form action="{{ .Site.Params.Subscription.endpoint }}" method="post" id="revue-form" name="revue-form"  target="_blank">
-          <input required class="revue-form-field" placeholder="Your email address..." type="email" name="member[email]" id="member_email">
-          <button class="subscription__btn" type="submit" name="member[subscribe]" id="member_submit">
-            Subscribe
-          </button>
-        </form>
-        {{ if $.Site.Data.revueSubscribersCount.count }}
-          <h4>
-            <i aria-hidden="true" class="fa fa-users"></i>
-            <span class="subscribers-counter" data-target="{{ $.Site.Data.revueSubscribersCount.count }}">0</span>
-            members
-          </h4>
-        {{ end }}
-      </div>
-      <div class="revue-form-footer subscription__agreement">By subscribing, you agree with Revue’s <a target="_blank" href="https://www.getrevue.co/terms">Terms of Service</a> and <a target="_blank" href="https://www.getrevue.co/privacy">Privacy Policy</a>.</div>
-    </div>
-  </section>
-</div>
-{{ end }}
+<!-- {{ if .Site.Params.Subscription }} -->
+<!-- <div class="subscription"> -->
+<!--   <header> -->
+<!--     <h3 class="subscription__title"> -->
+<!--       <i aria-hidden="true" class="fa fa-envelope"></i> -->
+<!--       {{ .Site.Params.Subscription.title | safeHTML }} -->
+<!--     </h3> -->
+<!--   </header> -->
+<!--   <section class="subscription__body"> -->
+<!--     <p>{{ .Site.Params.Subscription.description | safeHTML }}</p> -->
+<!--     <div id="revue-embed"> -->
+<!--       <div class="subscription__form-wrapper"> -->
+<!--         <form action="{{ .Site.Params.Subscription.endpoint }}" method="post" id="revue-form" name="revue-form"  target="_blank"> -->
+<!--           <input required class="revue-form-field" placeholder="Your email address..." type="email" name="member[email]" id="member_email"> -->
+<!--           <button class="subscription__btn" type="submit" name="member[subscribe]" id="member_submit"> -->
+<!--             Subscribe -->
+<!--           </button> -->
+<!--         </form> -->
+<!--         {{ if $.Site.Data.revueSubscribersCount.count }} -->
+<!--           <h4> -->
+<!--             <i aria-hidden="true" class="fa fa-users"></i> -->
+<!--             <span class="subscribers-counter" data-target="{{ $.Site.Data.revueSubscribersCount.count }}">0</span> -->
+<!--             members -->
+<!--           </h4> -->
+<!--         {{ end }} -->
+<!--       </div> -->
+<!--       <div class="revue-form-footer subscription__agreement">By subscribing, you agree with Revue’s <a target="_blank" href="https://www.getrevue.co/terms">Terms of Service</a> and <a target="_blank" href="https://www.getrevue.co/privacy">Privacy Policy</a>.</div> -->
+<!--     </div> -->
+<!--   </section> -->
+<!-- </div> -->
+<!-- {{ end }} -->
+<form action="https://sendy.mkvl.me/subscribe" method="POST" accept-charset="utf-8">
+	<label for="name">Name</label><br/>
+	<input type="text" name="name" id="name"/>
+	<br/>
+	<label for="email">Email</label><br/>
+	<input type="email" name="email" id="email"/><br/><br/>
+<input type="checkbox" name="gdpr" id="gdpr"/>
+<span><strong>Marketing permission</strong>: I give my consent to MKVL to be in touch with me via email using the information I have provided in this form for the purpose of news, updates and marketing.</span>
+<br/><br/>
+<span><strong>What to expect</strong>: If you wish to withdraw your consent and stop hearing from us, simply click the unsubscribe link at the bottom of every email we send or contact us at max@mkvl.me. We value and respect your personal data and privacy. To view our privacy policy, please visit our website. By submitting this form, you agree that we may process your information in accordance with these terms.</span>
+<br/><br/><div style="display:none;">
+	<label for="hp">HP</label><br/>
+	<input type="text" name="hp" id="hp"/>
+	</div>
+	<input type="hidden" name="list" value="jr5dhhdYyT763BY1CZl64s4A"/>
+	<input type="hidden" name="subform" value="yes"/>
+	<input type="submit" name="submit" id="submit"/>
+</form>
 
